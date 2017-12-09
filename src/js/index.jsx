@@ -13,8 +13,8 @@ require('../css/index.css');
 // load json
 var data = require('../json/index.json');
 // start js
-var root = (<Provider store={store}>
+var app = (<Provider store={store}>
     <App/>
 </Provider>);
-var app = document.querySelector('#app');
-ReactDOM.render(root, app);
+var root = document.getElementById('app');
+ReactDOM.render(app, root);

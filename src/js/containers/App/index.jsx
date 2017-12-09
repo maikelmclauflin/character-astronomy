@@ -4,7 +4,7 @@ import {
 import view from './view'
 import {
     mapDispatchToProps
-} from '../../utils/map-dispatch-to-props'
+} from '../../utils'
 
 const App = connect(
     mapStateToProps,
@@ -17,6 +17,7 @@ export {
 
 function mapStateToProps(state) {
     return {
-        ...state.menu
+        ...state.menu,
+        list: state.list
     }
 }
