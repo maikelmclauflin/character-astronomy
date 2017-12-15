@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/webpack-dev-server --progress",
-    "build": "./node_modules/.bin/webpack",
+    "test": "webpack-dev-server --progress",
+    "build": "webpack",
     "build:production": "PRODUCTION=true npm run build",
     "dev": "PRODUCTION=true npm run test"
   },
