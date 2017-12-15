@@ -1,9 +1,6 @@
-import * as React from 'react'
-import {
-    Item
-} from '../../components'
+import { Item } from '../../components'
 
-class App extends React.Component {
+class App extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
@@ -32,39 +29,39 @@ class App extends React.Component {
         return (<div>
             <span>{title}</span>
             <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    const {
-                        addButton
-                    } = component;
-                    const value = addButton.value;
-                    actions.listAdd({
-                        value
-                    });
-                    this.resetValue();
-                }}>
+            onSubmit={e => {
+                e.preventDefault();
+                const {
+                    addButton
+                } = component;
+                const value = addButton.value;
+                actions.listAdd({
+                    value
+                });
+                this.resetValue();
+            }}>
                 <input
-                    type="text"
-                    value={addValueState || ''}
-                    onChange={e => {
-                        const addValue = component.addButton.value;
-                        component.setState({
-                            addValue
-                        })
-                    }}
-                    ref={(input) => {
-                        component.addButton = input;
-                    }}/>
+            type='text'
+            value={addValueState || ''}
+            onChange={e => {
+                const addValue = component.addButton.value;
+                component.setState({
+                    addValue
+                })
+            }}
+            ref={(input) => {
+                component.addButton = input;
+            }}/>
                 <button
-                    disabled={!addValueState || hasInList}>add</button>
+            disabled={!addValueState || hasInList}>add</button>
             </form>
             <ul>{list.map((item) => {
                 return (<li
                     key={item.value}>
                     <Item {...item}
-                        onClickX={() => {
-                            actions.listRemove(item);
-                        }}></Item>
+                    onClickX={() => {
+                        actions.listRemove(item);
+                    }}></Item>
                 </li>);
             })}</ul>
         </div>);

@@ -2,16 +2,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var output = path.join(__dirname, './dist/');
 var input = path.join(__dirname, './src/');
-var scripts = ['https://unpkg.com/react@16/umd/react.development.js', 'https://unpkg.com/react-dom@16/umd/react-dom.development.js'];
 var htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: './src/html/index.html',
     title: 'here',
-    inject: true,
-    // title: 'here',
-    // hash: true,
-    files: {
-        js: scripts
-    }
+    inject: true
 });
 var entries = {
     index: entry('index')
@@ -56,7 +50,9 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     externals: {
-        // react: 'React'
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'immutable': 'Immutable'
     }
 };
 
