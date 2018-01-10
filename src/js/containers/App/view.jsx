@@ -37,30 +37,34 @@ class App extends React.PureComponent {
                 const value = addButton.value;
                 actions.listAdd({
                     value
+                }).then((options) => {
+                    console.log('add', options);
                 });
                 this.resetValue();
             }}>
                 <input
-            type='text'
-            value={addValueState || ''}
-            onChange={e => {
-                const addValue = component.addButton.value;
-                component.setState({
-                    addValue
-                })
-            }}
-            ref={(input) => {
-                component.addButton = input;
-            }}/>
+                    type='text'
+                    value={addValueState || ''}
+                    onChange={e => {
+                        const addValue = component.addButton.value;
+                        component.setState({
+                            addValue
+                        })
+                    }}
+                    ref={(input) => {
+                        component.addButton = input;
+                    }}/>
                 <button
-            disabled={!addValueState || hasInList}>add</button>
+                    disabled={!addValueState || hasInList}>add</button>
             </form>
             <ul>{list.map((item) => {
                 return (<li
                     key={item.value}>
                     <Item {...item}
                     onClickX={() => {
-                        actions.listRemove(item);
+                        actions.listRemove(item).then((options) => {
+                            console.log('remove', options);
+                        });
                     }}></Item>
                 </li>);
             })}</ul>

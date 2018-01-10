@@ -1,4 +1,13 @@
-import { createStore } from 'redux'
+import {
+    createStore,
+    applyMiddleware
+} from 'redux'
 import combined from '../reducers/combined'
-const store = createStore(combined);
+import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
+
+const store = createStore(combined, applyMiddleware(
+    thunk,
+    promise()
+));
 export default store
