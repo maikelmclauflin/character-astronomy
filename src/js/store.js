@@ -5,7 +5,7 @@ import {
 } from 'redux';
 import {
   epicMiddleware,
-} from './epics/middleware'
+} from 'js/epics/middleware'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
