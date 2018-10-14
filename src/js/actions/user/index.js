@@ -4,16 +4,16 @@ import {
   FETCH_USER_FAILED,
 } from 'js/constants';
 
-export const fetchUser = username => ({
+export const fetchUser = (username, payload) => ({
   type: FETCH_USER,
-  payload: { username }
+  payload,
 });
 
-export const fetchUserSuccess = user => ({
+export const fetchUserSuccess = (payload) => ({
   type: FETCH_USER_SUCCESS,
-  payload: { user }
+  payload,
 });
 
 export const fetchUserFailed = () => ({
-  type: FETCH_USER_FAILED
+  type: FETCH_USER_FAILED,
 });

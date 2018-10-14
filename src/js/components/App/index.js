@@ -12,7 +12,9 @@ import {
 } from 'react-router-dom'
 import {
   Header,
+  PageWrapper,
 } from 'js/components/container'
+import styled from 'styled-components'
 import {
   Contact,
   Home,
@@ -41,4 +43,9 @@ class Application extends Component {
     )
   }
 }
-export default Application
+
+const StyledApp = styled(Application)`
+height: 100%;
+`
+
+export default StyledApp

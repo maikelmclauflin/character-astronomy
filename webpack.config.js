@@ -1,24 +1,20 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const mode = 'production'
 
 module.exports = {
+  mode,
   resolve: {
     modules: ['./src', './node_modules']
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(sc|sa|c)ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // you can specify a publicPath here
-              // by default it use publicPath in webpackOptions.output
-              publicPath: '../'
-            }
-          },
-          "css-loader"
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ]
       },
       {

@@ -1,0 +1,15 @@
+@import "@blueprintjs/core/lib/scss/variables.scss";
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  padding-top: $pt-navbar-height;
+}
+
+#app {
+  min-height: 100%;
+}

@@ -7,7 +7,12 @@ import {
 } from 'reactstrap'
 import Toggle from 'react-toggle'
 import ContentEditable from 'react-sane-contenteditable'
-import { Stream } from "react-streams"
+import {
+  Stream,
+} from "react-streams"
+import {
+  EditableText,
+} from '@blueprintjs/core'
 import {
   of,
   pipe,
@@ -22,10 +27,13 @@ import {
   plan,
   streamProps,
 } from "react-streams"
-import {
-  Editable,
-} from 'js/components/container'
 
+import {
+  connect,
+} from 'react-redux'
+import {
+  fetchUser,
+} from 'js/actions'
 import "react-toggle/style.css"
 
 const onInc = plan(
@@ -33,10 +41,10 @@ const onInc = plan(
     count: state.count + 2
   }))
 )
-const updateTextStream = plan(
-  map((text) => (state) => ({
+const updateText = plan(
+  map((value) => (state) => ({
     ...state,
-    text,
+    value,
   }))
 )
 const toggleView = plan(
@@ -53,18 +61,19 @@ const Editor = streamProps(
   })
 )
 
-const updateText = (e) => updateTextStream(e.target.textContent)
-
-export class App extends React.Component {
+class Application extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
   render() {
     return (
       <Container fluid className="mt-3">
         <Editor
           editing={true}
-          text="starter">
+          value="starter">
           {({
             editing,
-            text,
+            value,
             btnText,
             toggleView,
           }) => {
@@ -75,10 +84,12 @@ export class App extends React.Component {
                     defaultChecked={editing}
                     onChange={toggleView} /><span>Editing</span>
                 </label>
-                <Editable
-                  editable={editing}
-                  onChange={updateText}
-                  text={text} />
+                <EditableText
+                  multiline={true}
+                  minLines={3}
+                  maxLines={12}
+                  value={value}
+                  onChange={updateText} />
               </Fragment>
             )
           }}
@@ -86,4 +97,22 @@ export class App extends React.Component {
       </Container>
     )
   }
+}
+
+
+const mapStateToProps = (state) => ({
+  image: state.user.avatar_url,
+})
+
+const mapDispatchToProps = {
+  fetchUser,
+}
+
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Application)
+
+export {
+  ConnectedApp as App,
 }

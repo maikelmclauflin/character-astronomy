@@ -3,18 +3,20 @@ import {
   compose,
   applyMiddleware,
 } from 'redux';
-import {
-  epicMiddleware,
-} from 'js/epics/middleware'
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import reducers from 'js/reducers'
+import epics from 'js/epics'
+import epicMiddleware from 'js/epics/middleware'
 
-const store = createStore(
-  reducer,
-  composeEnhancers(
-    applyMiddleware(epicMiddleware)
+const devtoolsCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+const composeEnhancers = devtoolsCompose || compose
+
+export default () => {
+  const store = createStore(
+    reducers,
+    composeEnhancers(
+      applyMiddleware(epicMiddleware)
+    )
   )
-);
-
-export {
-  store,
+  epicMiddleware.run(epics)
+  return store
 }

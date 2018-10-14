@@ -3,43 +3,21 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 import classnames from 'classnames'
+import {
+  EditableText,
+} from '@blueprintjs/core'
 
 class Editable extends React.Component {
-  componentDidMount() {
-    this.setText()
-  }
-  componentDidUpdate() {
-    this.setText()
-  }
-  shouldComponentUpdate(nextProps) {
-    return this.props.editable !== nextProps.editable;
-  }
-  setText() {
-    this.refEl.innerHTML = this.props.text;
-  }
-  setRef = (el) => {
-    this.refEl = el
-  }
   render() {
     const {
       props,
     } = this
-    const {
-      className,
-      onChange,
-      editable,
-    } = props
-    const cn = classnames("editable", className)
     return (
-      <div
-        {...(editable ? {
-          contentEditable: true,
-        } : {})}
-        className={cn}
-        onInput={onChange}
-        ref={this.setRef}
-      >
-      </div>
+      <EditableText
+        multiline={true}
+        minLines={3}
+        maxLines={12}
+        {...props} />
     )
   }
 }
