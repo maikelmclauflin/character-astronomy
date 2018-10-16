@@ -1,4 +1,4 @@
-@import "@blueprintjs/core/lib/scss/variables.scss";
+// @import '~antd/dist/antd.css';
 
 html,
 body {
@@ -6,10 +6,7 @@ body {
   height: 100%;
 }
 
-body {
-  padding-top: $pt-navbar-height;
-}
-
 #app {
   min-height: 100%;
+  overflow: auto;
 }

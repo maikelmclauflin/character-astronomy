@@ -1,29 +1,37 @@
-import App from 'js/components/App'
+import "babel-polyfill"
+import {
+  App,
+} from 'js/component'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
   Provider,
-} from 'react-redux';
+} from 'unstated'
 import {
   BrowserRouter as Router,
 } from 'react-router-dom'
-import configureStore from 'js/store'
+// import {
+//   store,
+//   history,
+// } from 'js/store'
+// import {
+//   ConnectedRouter as Router,
+// } from 'connected-react-router/immutable'
 
 import 'scss/index.scss'
-import 'js/firebase'
+// import 'js/firebase'
 
 render()
 
 function render() {
   const wrapper = document.getElementById('app');
-  const store = configureStore()
-  const fragment = tree(store)
+  const fragment = tree()
   return ReactDOM.render(fragment, wrapper);
 }
 
-function tree(store) {
+function tree() {
   return (
-    <Provider store={store}>
+    <Provider>
       <Router>
         <App />
       </Router>
